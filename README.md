@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ BrandForge AI
+# BrandForge AI
 
 ### Autonomous Multi-Agent Brand Intelligence System
 
