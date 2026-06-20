@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+@page { size: 794px 1123px; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 794px; height: 1123px; font-family: 'Inter', Arial, sans-serif; background: #ffffff; }
+.page { position: relative; width: 794px; height: 1123px; overflow: hidden; }
+
+/* Left color panel */
+.left {
+  position: absolute; left: 0; top: 0;
+  width: 310px; height: 1048px;
+  background: {{PRIMARY_COLOR}};
+  padding: 54px 38px 54px 38px;
+}
+.brand-name {
+  font-size: 38px; font-weight: 900; line-height: 1.06;
+  color: #ffffff; word-break: break-word; margin-bottom: 14px;
+}
+.brand-category {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  margin-bottom: 0;
+}
+/* Geometric decorations */
+.deco-circle {
+  position: absolute; width: 200px; height: 200px;
+  border: 20px solid {{ACCENT_COLOR}};
+  border-radius: 50%; left: -66px; top: 340px; opacity: 0.75;
+}
+.deco-square {
+  position: absolute; width: 110px; height: 110px;
+  background: {{SECONDARY_COLOR}};
+  transform: rotate(34deg); right: -38px; top: 150px; opacity: 0.70;
+}
+.deco-dot {
+  position: absolute; width: 14px; height: 14px;
+  border-radius: 50%; background: {{ACCENT_COLOR}};
+  right: 48px; bottom: 260px; opacity: 0.90;
+}
+/* Side tagline */
+.side-tagline {
+  position: absolute; left: 38px; right: 32px; bottom: 156px;
+  font-size: 15px; line-height: 1.60; color: rgba(255,255,255,0.80);
+  font-weight: 400;
+}
+/* CTA button */
+.cta-btn {
+  position: absolute; left: 38px; right: 38px; bottom: 52px;
+  background: {{ACCENT_COLOR}};
+  color: #ffffff; font-size: 15px; font-weight: 800;
+  padding: 17px 16px; border-radius: 8px; text-align: center;
+}
+
+/* Right content panel */
+.right {
+  position: absolute; left: 310px; top: 0;
+  width: 484px; height: 1048px;
+  padding: 62px 52px 48px 56px;
+  background: #ffffff;
+}
+.headline {
+  font-size: 40px; font-weight: 900; line-height: 1.08;
+  color: {{PRIMARY_COLOR}}; margin-bottom: 18px;
+}
+.hero-text {
+  font-size: 16px; line-height: 1.70; color: #3d4652;
+  margin-bottom: 14px; font-weight: 400;
+}
+.elevator-pitch {
+  font-size: 14px; line-height: 1.65; color: #555f6d;
+  margin-bottom: 36px; font-weight: 400;
+  padding-bottom: 28px;
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+/* USP blocks */
+.usp { display: block; position: relative; padding-left: 46px; margin-bottom: 26px; }
+.usp-bullet {
+  position: absolute; left: 0; top: 2px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: {{ACCENT_COLOR}};
+}
+.usp-title {
+  font-size: 17px; font-weight: 800; line-height: 1.28;
+  color: {{SECONDARY_COLOR}}; margin-bottom: 6px;
+}
+.usp-desc {
+  font-size: 13px; line-height: 1.58; color: #606975; font-weight: 400;
+}
+
+/* Footer strip */
+.footer {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 75px;
+  background: {{SECONDARY_COLOR}};
+}
+.footer-url {
+  position: absolute; left: 30px; top: 28px;
+  font-size: 10px; color: rgba(255,255,255,0.65);
+  font-family: 'Inter', monospace; max-width: 220px; overflow: hidden;
+}
+.footer-center {
+  position: absolute; left: 270px; right: 180px; top: 22px;
+  text-align: center; font-size: 12px; font-weight: 700;
+  color: rgba(255,255,255,0.90); line-height: 1.35;
+}
+.footer-brand {
+  position: absolute; right: 26px; top: 28px;
+  font-size: 10px; color: rgba(255,255,255,0.42); text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- Left panel -->
+  <div class="left">
+    <div class="brand-name">{{BRAND_NAME}}</div>
+    <div class="brand-category">{{BRAND_CATEGORY}}</div>
+    <div class="deco-circle"></div>
+    <div class="deco-square"></div>
+    <div class="deco-dot"></div>
+    <div class="side-tagline">{{TAGLINE}}</div>
+    <div class="cta-btn">{{CTA_TEXT}}</div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="right">
+    <h2 class="headline">{{HEADLINE}}</h2>
+    <p class="hero-text">{{HERO_TEXT}}</p>
+    <p class="elevator-pitch">{{ELEVATOR_PITCH}}</p>
+
+    <div class="usp">
+      <div class="usp-bullet"></div>
+      <div class="usp-title">{{USP_1_TITLE}}</div>
+      <div class="usp-desc">{{USP_1_DESC}}</div>
+    </div>
+    <div class="usp">
+      <div class="usp-bullet"></div>
+      <div class="usp-title">{{USP_2_TITLE}}</div>
+      <div class="usp-desc">{{USP_2_DESC}}</div>
+    </div>
+    <div class="usp">
+      <div class="usp-bullet"></div>
+      <div class="usp-title">{{USP_3_TITLE}}</div>
+      <div class="usp-desc">{{USP_3_DESC}}</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-url">{{BRAND_URL}}</div>
+    <div class="footer-center">{{TAGLINE}}</div>
+    <div class="footer-brand">Powered by BrandForge</div>
+  </div>
+</div>
+</body>
+</html>

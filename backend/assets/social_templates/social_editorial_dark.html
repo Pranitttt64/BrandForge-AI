@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  background: {{PANEL_BG}};
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  background: {{PANEL_BG}};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Background design elements ── */
+
+/* Large circle — top right */
+.bg-circle-tr {
+  position: absolute;
+  top: -180px; right: -180px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: {{ACCENT_10}};
+  pointer-events: none;
+}
+
+/* Subtle second circle — bottom left */
+.bg-circle-bl {
+  position: absolute;
+  bottom: -200px; left: -100px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: {{ACCENT_06}};
+  pointer-events: none;
+}
+
+/* Horizontal rule line — editorial detail */
+.bg-rule {
+  position: absolute;
+  top: 420px; left: 0; right: 0;
+  height: 0.5px;
+  background: {{PANEL_TEXT}};
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* ── Structural chrome ── */
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: {{ACCENT}};
+  z-index: 10;
+}
+
+.left-bar {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 6px;
+  background: {{ACCENT}};
+  z-index: 10;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: {{ACCENT}};
+  z-index: 10;
+}
+
+/* ── Content layout ── */
+.content {
+  position: absolute;
+  inset: 0;
+  padding: 72px 80px 72px 86px;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+/* Brand row — top */
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: {{PANEL_TEXT}};
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.brand-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: {{ACCENT}};
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid {{ACCENT_20}};
+  border-radius: 3px;
+}
+
+/* Hero section — headline */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 82px;
+  font-weight: 900;
+  color: {{PANEL_TEXT}};
+  line-height: 1.0;
+  letter-spacing: -3px;
+  margin-bottom: 28px;
+  max-width: 880px;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: {{PANEL_TEXT}};
+  opacity: 0.5;
+  line-height: 1.55;
+  max-width: 700px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Divider */
+.divider {
+  width: 80px;
+  height: 3px;
+  background: {{ACCENT}};
+  margin: 40px 0;
+  border-radius: 2px;
+}
+
+/* USP strip — bottom third */
+.usp-strip {
+  display: flex;
+  gap: 3px;
+}
+
+.usp-pill {
+  flex: 1;
+  background: {{ACCENT_10}};
+  border-radius: 6px;
+  padding: 18px 16px;
+}
+
+.usp-pill-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: {{ACCENT}};
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.usp-pill-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: {{PANEL_TEXT}};
+  line-height: 1.25;
+  margin-bottom: 6px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.usp-pill-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: {{PANEL_TEXT}};
+  opacity: 0.45;
+  line-height: 1.5;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* CTA button */
+.cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: {{CTA_BG}};
+  color: {{CTA_TEXT_COLOR}};
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 36px;
+  border-radius: 8px;
+  letter-spacing: -0.3px;
+}
+
+.cta-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: {{PANEL_TEXT}};
+  opacity: 0.2;
+  letter-spacing: 0.3px;
+}
+
+.generator {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: {{PANEL_TEXT}};
+  opacity: 0.15;
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Background elements -->
+  <div class="bg-circle-tr"></div>
+  <div class="bg-circle-bl"></div>
+  <div class="bg-rule"></div>
+
+  <!-- Chrome -->
+  <div class="top-bar"></div>
+  <div class="left-bar"></div>
+  <div class="bottom-bar"></div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <div class="brand-row">
+      <div class="brand-name">{{BRAND_NAME}}</div>
+      <div class="brand-tag">{{BRAND_CATEGORY}}</div>
+    </div>
+
+    <div class="hero">
+      <div class="headline">{{HEADLINE}}</div>
+      <div class="tagline">{{TAGLINE}}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="usp-strip">
+      <div class="usp-pill">
+        <div class="usp-pill-num">01</div>
+        <div class="usp-pill-title">{{USP_1_TITLE}}</div>
+        <div class="usp-pill-desc">{{USP_1_RAW}}</div>
+      </div>
+      <div class="usp-pill">
+        <div class="usp-pill-num">02</div>
+        <div class="usp-pill-title">{{USP_2_TITLE}}</div>
+        <div class="usp-pill-desc">{{USP_2_RAW}}</div>
+      </div>
+      <div class="usp-pill">
+        <div class="usp-pill-num">03</div>
+        <div class="usp-pill-title">{{USP_3_TITLE}}</div>
+        <div class="usp-pill-desc">{{USP_3_RAW}}</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <div class="cta-btn">{{CTA_TEXT}} →</div>
+      <div>
+        <div class="cta-url">{{BRAND_URL}}</div>
+        <div class="generator">Generated by {{GENERATOR}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

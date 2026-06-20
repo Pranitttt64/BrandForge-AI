@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@page { size: A4; margin: 0; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --panel:      {{PANEL_BG}};
+  --panel-text: {{PANEL_TEXT}};
+  --accent:     {{ACCENT}};
+  --accent-10:  {{ACCENT_10}};
+  --accent-20:  {{ACCENT_20}};
+  --bg:         {{BG}};
+  --text:       {{TEXT}};
+  --cta-bg:     {{CTA_BG}};
+  --cta-text:   {{CTA_TEXT_COLOR}};
+  --secondary:  {{SECONDARY}};
+}
+
+body {
+  width: 210mm;
+  height: 297mm;
+  display: flex;
+  font-family: 'Inter', Helvetica, sans-serif;
+  overflow: hidden;
+  background: var(--bg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── LEFT PANEL ── */
+.panel-left {
+  width: 42%;
+  background: var(--panel);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 36px;
+  overflow: hidden;
+}
+
+/* Geometric background elements */
+.panel-left::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: var(--accent-10);
+  pointer-events: none;
+}
+
+.panel-left::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -40px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: var(--accent-10);
+  pointer-events: none;
+}
+
+/* Large watermark number */
+.watermark {
+  position: absolute;
+  bottom: -30px; right: -20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 280px;
+  font-weight: 900;
+  color: var(--panel-text);
+  opacity: 0.03;
+  line-height: 1;
+  letter-spacing: -10px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Top accent stripe */
+.panel-accent-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+}
+
+.panel-brand-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--panel-text);
+  opacity: 0.45;
+  margin-bottom: 52px;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.panel-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--panel-text);
+  opacity: 0.5;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 200px;
+}
+
+.panel-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--panel-text);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+  max-width: 220px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.panel-accent-rule {
+  width: 36px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.panel-cta {
+  display: inline-block;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 13px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-bottom: 32px;
+}
+
+.panel-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 36px;
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  color: var(--panel-text);
+  opacity: 0.22;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* ── RIGHT PANEL ── */
+.panel-right {
+  flex: 1;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 44px 40px 44px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal accent element */
+.right-diagonal {
+  position: absolute;
+  top: 0; right: 0;
+  width: 160px; height: 160px;
+  background: var(--accent-10);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  pointer-events: none;
+}
+
+.right-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.3;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* USP items */
+.usp-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.usp-item {
+  display: flex;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--text);
+  border-bottom-width: 0.5px;
+  position: relative;
+}
+
+.usp-item:first-child {
+  border-top: 0.5px solid var(--text);
+  border-top-color: rgba(0,0,0,0.08);
+}
+
+.usp-item-border-color {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+.usp-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  padding-top: 3px;
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+.usp-content { flex: 1; }
+
+.usp-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 5px;
+  letter-spacing: -0.2px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.usp-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--text);
+  opacity: 0.5;
+  line-height: 1.55;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Elevator pitch */
+.elevator {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 0.5px solid rgba(0,0,0,0.06);
+}
+
+.elevator-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--text);
+  opacity: 0.45;
+  line-height: 1.65;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Bottom footer row */
+.right-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  color: var(--text);
+  opacity: 0.25;
+  letter-spacing: 0.3px;
+}
+
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--text);
+  opacity: 0.18;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-generator {
+  font-family: 'Inter', sans-serif;
+  font-size: 7.5px;
+  color: var(--text);
+  opacity: 0.15;
+}
+</style>
+</head>
+<body>
+
+<div class="panel-left">
+  <div class="panel-accent-top"></div>
+  <div class="watermark">3</div>
+
+  <div class="panel-brand-label">{{BRAND_NAME}}</div>
+
+  <div class="panel-content">
+    <div class="panel-tagline">{{TAGLINE}}</div>
+    <div class="panel-accent-rule"></div>
+    <div class="panel-headline">{{HEADLINE}}</div>
+    <a class="panel-cta">{{CTA_TEXT}} →</a>
+  </div>
+
+  <div class="panel-footer">Generated by {{GENERATOR}}</div>
+</div>
+
+<div class="panel-right">
+  <div class="right-diagonal"></div>
+
+  <div class="right-eyebrow">Why {{BRAND_NAME}}</div>
+
+  <div class="usp-list">
+    <div class="usp-item">
+      <div class="usp-number">01</div>
+      <div class="usp-content">
+        <div class="usp-title">{{USP_1_TITLE}}</div>
+        <div class="usp-desc">{{USP_1_DESC}}</div>
+      </div>
+    </div>
+    <div class="usp-item">
+      <div class="usp-number">02</div>
+      <div class="usp-content">
+        <div class="usp-title">{{USP_2_TITLE}}</div>
+        <div class="usp-desc">{{USP_2_DESC}}</div>
+      </div>
+    </div>
+    <div class="usp-item">
+      <div class="usp-number">03</div>
+      <div class="usp-content">
+        <div class="usp-title">{{USP_3_TITLE}}</div>
+        <div class="usp-desc">{{USP_3_DESC}}</div>
+      </div>
+    </div>
+    <div class="usp-item">
+      <div class="usp-number">04</div>
+      <div class="usp-content">
+        <div class="usp-title">{{USP_4_TITLE}}</div>
+        <div class="usp-desc">{{USP_4_DESC}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="elevator">
+    <div class="elevator-text">{{ELEVATOR_PITCH}}</div>
+  </div>
+
+  <div class="right-footer">
+    <div class="footer-url">{{BRAND_URL}}</div>
+    <div class="footer-brand">{{BRAND_NAME}}</div>
+    <div class="footer-generator">{{GENERATOR}}</div>
+  </div>
+</div>
+
+</body>
+</html>

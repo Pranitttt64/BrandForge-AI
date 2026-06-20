@@ -1,0 +1,21 @@
+# Run: pip install -r requirements.txt
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-dotenv==1.0.0
+httpx==0.27.0
+playwright==1.45.0
+beautifulsoup4==4.12.3
+langchain>=0.3.0
+langchain-groq>=0.2.0
+langchain-google-genai>=2.0.0
+langchain-community>=0.3.0
+langgraph>=0.2.20
+chromadb==0.5.0
+sentence-transformers==3.0.0
+langchain-huggingface>=0.1.0
+pillow==10.4.0
+weasyprint>=62.0
+reportlab>=4.5.0
+qrcode[pil]>=8.2
+python-multipart==0.0.9
+aiofiles==24.1.0

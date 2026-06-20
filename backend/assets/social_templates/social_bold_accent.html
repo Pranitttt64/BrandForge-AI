@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  background: {{PANEL_BG}};
+  overflow: hidden;
+}
+
+/* Diagonal split — top third is accent color */
+.diagonal-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 400px;
+  background: {{ACCENT}};
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  pointer-events: none;
+}
+
+/* Large circle overlay — editorial feel */
+.circle-overlay {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  border: 80px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+/* Bottom circle */
+.circle-bottom {
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: {{ACCENT_10}};
+  pointer-events: none;
+}
+
+/* Left stripe */
+.left-stripe {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 5px;
+  background: rgba(255,255,255,0.15);
+  z-index: 10;
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+/* Brand */
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.brand-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3px;
+}
+
+/* Huge headline — center of card */
+.headline-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 96px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.96;
+  letter-spacing: -4px;
+  margin-bottom: 32px;
+  max-width: 900px;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  max-width: 600px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* USP grid at bottom */
+.usp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  margin-bottom: 32px;
+}
+
+.usp-box {
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  padding: 16px 14px;
+  backdrop-filter: blur(8px);
+}
+
+.usp-box-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.usp-box-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Bottom bar */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #ffffff;
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 8px;
+  letter-spacing: -0.2px;
+  backdrop-filter: blur(8px);
+}
+
+.bottom-meta {
+  text-align: right;
+}
+
+.meta-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 4px;
+}
+
+.meta-gen {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.12);
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="diagonal-top"></div>
+  <div class="circle-overlay"></div>
+  <div class="circle-bottom"></div>
+  <div class="left-stripe"></div>
+
+  <div class="content">
+
+    <div class="brand-row">
+      <div class="brand-name">{{BRAND_NAME}}</div>
+      <div class="brand-badge">{{BRAND_CATEGORY}}</div>
+    </div>
+
+    <div class="headline-area">
+      <div class="headline">{{HEADLINE}}</div>
+      <div class="tagline">{{TAGLINE}}</div>
+    </div>
+
+    <div class="usp-grid">
+      <div class="usp-box">
+        <div class="usp-box-num">01</div>
+        <div class="usp-box-title">{{USP_1_TITLE}}</div>
+      </div>
+      <div class="usp-box">
+        <div class="usp-box-num">02</div>
+        <div class="usp-box-title">{{USP_2_TITLE}}</div>
+      </div>
+      <div class="usp-box">
+        <div class="usp-box-num">03</div>
+        <div class="usp-box-title">{{USP_3_TITLE}}</div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="cta-btn">{{CTA_TEXT}} →</div>
+      <div class="bottom-meta">
+        <div class="meta-url">{{BRAND_URL}}</div>
+        <div class="meta-gen">Generated by {{GENERATOR}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

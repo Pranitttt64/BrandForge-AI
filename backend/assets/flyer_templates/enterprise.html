@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@page { size: A4; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 210mm;
+  height: 297mm;
+  font-family: 'Inter', Helvetica, sans-serif;
+  background: {{BG}};
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Header */
+.header {
+  background: {{PANEL_BG}};
+  padding: 40px 50px 30px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: {{ACCENT}};
+}
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: {{PANEL_TEXT}};
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: {{PANEL_TEXT}};
+  opacity: 0.6;
+  max-width: 300px;
+  text-align: right;
+}
+
+/* Middle Section */
+.middle {
+  display: flex;
+  padding: 50px;
+  gap: 40px;
+}
+.middle-left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: {{TEXT}};
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+.elevator {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: {{TEXT}};
+  opacity: 0.7;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  background: {{ACCENT}};
+  color: {{CTA_TEXT_COLOR}};
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+/* Middle Right (Stats Grid) */
+.middle-right {
+  flex: 0.8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-content: center;
+}
+.stat-box {
+  background: {{PRIMARY_04}};
+  padding: 24px;
+  border-radius: 8px;
+  border-top: 3px solid {{ACCENT}};
+  text-align: center;
+}
+.stat-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: {{ACCENT}};
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: {{TEXT}};
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Lower Section */
+.lower {
+  padding: 0 50px 40px;
+  flex: 1;
+}
+.usp-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+.usp-col {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 20px;
+}
+.usp-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: {{ACCENT}};
+  margin-bottom: 12px;
+}
+.usp-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: {{TEXT}};
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.usp-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: {{TEXT}};
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  background: {{PANEL_BG}};
+  padding: 24px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: {{PANEL_TEXT}};
+  opacity: 0.5;
+}
+.footer-gen {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: {{PANEL_TEXT}};
+  opacity: 0.3;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bar"></div>
+  <div class="brand-name">{{BRAND_NAME}}</div>
+  <div class="tagline">{{TAGLINE}}</div>
+</div>
+
+<div class="middle">
+  <div class="middle-left">
+    <div class="headline">{{HEADLINE}}</div>
+    <div class="elevator">{{ELEVATOR_PITCH}}</div>
+    <div class="cta-btn">{{CTA_TEXT}} →</div>
+  </div>
+  <div class="middle-right">
+    <div class="stat-box">
+      <div class="stat-number" id="stat1">10x</div>
+      <div class="stat-label">Faster</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="stat2">99%</div>
+      <div class="stat-label">Accuracy</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="stat3">3x</div>
+      <div class="stat-label">ROI</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="stat4">24/7</div>
+      <div class="stat-label">Support</div>
+    </div>
+  </div>
+</div>
+
+<div class="lower">
+  <div class="usp-table">
+    <div class="usp-col">
+      <div class="usp-num">01</div>
+      <div class="usp-title">{{USP_1_TITLE}}</div>
+      <div class="usp-desc">{{USP_1_DESC}}</div>
+    </div>
+    <div class="usp-col">
+      <div class="usp-num">02</div>
+      <div class="usp-title">{{USP_2_TITLE}}</div>
+      <div class="usp-desc">{{USP_2_DESC}}</div>
+    </div>
+    <div class="usp-col">
+      <div class="usp-num">03</div>
+      <div class="usp-title">{{USP_3_TITLE}}</div>
+      <div class="usp-desc">{{USP_3_DESC}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-url">{{BRAND_URL}}</div>
+  <div class="footer-gen">Generated by {{GENERATOR}}</div>
+</div>
+
+<script>
+  // Simple extraction of stats from USPs
+  function extractStat(text, fallback) {
+    if (!text) return fallback;
+    const match = text.match(/\b(\d+(?:\.\d+)?(?:k|m|b|x|%|\+)?)\b/i);
+    return match ? match[1] : fallback;
+  }
+  
+  const usps = [
+    "{{USP_1_RAW}}",
+    "{{USP_2_RAW}}",
+    "{{USP_3_RAW}}",
+    "{{USP_4_RAW}}"
+  ].join(" ");
+  
+  const numbers = [];
+  const regex = /\b(\d+(?:\.\d+)?(?:k|m|b|x|%|\+)?)\b/gi;
+  let m;
+  while ((m = regex.exec(usps)) !== null) {
+    if (!numbers.includes(m[1])) {
+      numbers.push(m[1]);
+    }
+  }
+  
+  const fallbacks = ["10x", "99%", "3x", "24/7"];
+  for (let i=0; i<4; i++) {
+    document.getElementById("stat" + (i+1)).innerText = numbers[i] || fallbacks[i];
+  }
+</script>
+
+</body>
+</html>

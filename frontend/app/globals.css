@@ -1,0 +1,332 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-heading: var(--font-syne);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ── SECTION 1: Design tokens ── */
+:root,
+.dark {
+  --bg-base: #0a0a0a;
+  --bg-surface: #111111;
+  --bg-elevated: #1a1a1a;
+  --border-color: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-muted: #888888;
+  --brand-accent: #f59e0b;
+  --brand-accent-dim: #92400e;
+  --brand-success: #10b981;
+  --brand-error: #ef4444;
+  --agent-glow: rgba(245, 158, 11, 0.15);
+
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-accent);
+  --primary-foreground: #000000;
+  --secondary: var(--bg-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-elevated);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--bg-elevated);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--brand-error);
+  --destructive-foreground: var(--text-primary);
+  --border: var(--border-color);
+  --input: var(--border-color);
+  --ring: var(--brand-accent);
+  --radius: 0.5rem;
+
+  --forge-base: #0a0a0a;
+  --forge-surface: #0e0e0e;
+  --forge-elevated: #111111;
+  --forge-border: #1a1a1a;
+  --forge-border-bright: #2a2a2a;
+  --forge-amber: #f59e0b;
+  --forge-amber-dim: rgba(245,158,11,0.12);
+  --forge-amber-glow: rgba(245,158,11,0.25);
+  --forge-success: #10b981;
+  --forge-error: #ef4444;
+  --forge-warning: #f59e0b;
+  --forge-text-primary: #f0f0f0;
+  --forge-text-secondary: #888888;
+  --forge-text-muted: #444444;
+  --forge-text-ghost: #222222;
+  --forge-radius: 8px;
+  --forge-radius-lg: 12px;
+  --forge-radius-xl: 16px;
+  --forge-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --forge-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --forge-ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ── SECTION 2: Base resets ── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { @apply border-border; }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    @apply font-sans;
+  }
+  body {
+    background: var(--forge-base);
+    color: var(--forge-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    overflow-x: hidden;
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading font-bold; }
+}
+
+/* ── SECTION 3: Custom scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--forge-base); }
+::-webkit-scrollbar-thumb {
+  background: rgba(245,158,11,0.3);
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(245,158,11,0.55); }
+* { scrollbar-width: thin; scrollbar-color: rgba(245,158,11,0.3) var(--forge-base); }
+
+/* ── SECTION 4: Selection ── */
+::selection { background: rgba(245,158,11,0.2); color: #f59e0b; }
+
+/* ── SECTION 5: All @keyframes ── */
+@keyframes forgeSlideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes forgeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes forgeSlideRight {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes forgeSlideLeft {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes forgeFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes forgeScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes forgePulseAmber {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(245,158,11,0); }
+}
+@keyframes forgeGlowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+@keyframes forgeMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+@keyframes forgeSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes forgeShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes forgeProgressFill {
+  from { width: 0%; }
+  to   { width: var(--progress-target, 100%); }
+}
+@keyframes forgeScanline {
+  from { transform: translateY(-100%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  to   { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes forgeTerminalBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes forgeCountUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes forgeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+@keyframes forgeOrbit {
+  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+/* Legacy compat */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulseAmber { 0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); } 50% { box-shadow: 0 0 0 6px rgba(245,158,11,0); } }
+@keyframes terminalBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+/* ── SECTION 6: Utility animation classes ── */
+.fade-in     { animation: forgeFadeIn   0.5s var(--forge-ease) both; }
+.slide-up    { animation: forgeSlideUp  0.65s var(--forge-ease) both; }
+.slide-left  { animation: forgeSlideLeft 0.65s var(--forge-ease) both; }
+.scale-in    { animation: forgeScaleIn  0.5s var(--forge-ease) both; }
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.36s; }
+.delay-5 { animation-delay: 0.48s; }
+.delay-6 { animation-delay: 0.62s; }
+
+/* Legacy compat */
+.animate-fade-in    { animation: fadeIn 0.5s ease-out both; }
+.animate-slide-up   { animation: slideUp 0.45s ease-out both; }
+.animate-slide-right { animation: slideRight 0.45s ease-out both; }
+.animate-pulse-amber { animation: pulseAmber 1.8s ease-in-out infinite; }
+.animate-terminal-blink { animation: terminalBlink 1s step-end infinite; }
+
+/* ── SECTION 7: Skeleton loading ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--forge-elevated) 25%,
+    rgba(245,158,11,0.04) 50%,
+    var(--forge-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: forgeShimmer 2s infinite;
+  border-radius: var(--forge-radius);
+}
+
+/* ── SECTION 8: Grid background utility ── */
+.forge-grid {
+  background-image:
+    linear-gradient(rgba(245,158,11,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.05) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── SECTION 9: Amber glow card effect ── */
+.forge-card {
+  background: var(--forge-surface);
+  border: 1px solid var(--forge-border);
+  border-radius: var(--forge-radius-lg);
+  transition: border-color 0.3s var(--forge-ease),
+              box-shadow 0.3s var(--forge-ease);
+}
+.forge-card:hover {
+  border-color: rgba(245,158,11,0.2);
+  box-shadow: 0 0 32px rgba(245,158,11,0.06), inset 0 0 0 1px rgba(245,158,11,0.08);
+}
+
+/* ── SECTION 10: Amber button ── */
+.forge-btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--forge-radius);
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(245,158,11,0.2);
+  transition: box-shadow 0.25s var(--forge-ease),
+              transform 0.15s var(--forge-ease),
+              filter 0.2s var(--forge-ease);
+  -webkit-font-smoothing: antialiased;
+}
+.forge-btn-primary:hover {
+  box-shadow: 0 0 44px rgba(245,158,11,0.4);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.forge-btn-primary:active { transform: scale(0.97); }
+.forge-btn-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+
+/* ── SECTION 11: Forge input ── */
+.forge-input {
+  background: var(--forge-surface);
+  border: 1px solid var(--forge-border);
+  border-radius: var(--forge-radius);
+  color: var(--forge-text-primary);
+  font-family: var(--font-jetbrains-mono), monospace;
+  outline: none;
+  transition: border-color 0.25s var(--forge-ease),
+              box-shadow 0.25s var(--forge-ease);
+  -webkit-font-smoothing: antialiased;
+}
+.forge-input:focus {
+  border-color: rgba(245,158,11,0.6);
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.08),
+              0 0 32px rgba(245,158,11,0.1);
+}
+.forge-input::placeholder { color: var(--forge-text-ghost); }
+
+/* ── SECTION 12: Amber pill badge ── */
+.forge-badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 999px;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  background: rgba(245,158,11,0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245,158,11,0.25);
+}
+
+/* ── SECTION 13: Page transition wrapper ── */
+.page-enter {
+  animation: forgeFadeIn 0.4s var(--forge-ease) both;
+}
+
+.font-mono { font-family: var(--font-jetbrains-mono), "Courier New", monospace; }
+.font-heading { font-family: var(--font-syne), system-ui, sans-serif; }

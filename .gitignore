@@ -1,0 +1,78 @@
+── Python / Backend ──────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Backend runtime data — never commit generated content
+backend/chroma_store/
+backend/outputs/
+backend/assets/fonts/*.ttf
+backend/.env
+backend/.env.local
+
+── Node / Frontend ────────────────────────────────────
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Frontend env files
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+
+── Editor / OS ────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+── Antigravity / Cursor ───────────────────────────────
+.antigravity/
+.cursor/
+.windsurf/
+
+── Logs ───────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+── Misc ───────────────────────────────────────────────
+*.zip
+.cache/
+
+# Playwright
+backend/ms-playwright/
+ms-playwright/
+**/ms-playwright/
+
+# Internal scratch / prompt files
+IDE_MASTER_PROMPT.md
+SKILL.md
+all_code.txt
+full_instructions*.txt
+user_prompt.txt
+structure.txt
+start-dev.ps1
+
+CLAUDE.md
+AGENTS.md
+.cursorrules
+.windsurfrules
+.antigravity/
+.cursor/
+.windsurf/

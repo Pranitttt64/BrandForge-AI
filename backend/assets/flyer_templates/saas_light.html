@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@page { size: A4; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 210mm;
+  height: 297mm;
+  font-family: 'Inter', Helvetica, sans-serif;
+  background: {{BG}};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── TOP HEADER BAND ── */
+.header {
+  width: 100%;
+  background: {{BG}};
+  padding: 44px 56px 36px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.header-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: {{ACCENT}};
+}
+
+.header-left { flex: 1; }
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: {{TEXT}};
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 14px;
+}
+
+.headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: {{TEXT}};
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  max-width: 360px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.headline-accent {
+  color: {{ACCENT}};
+}
+
+.header-right {
+  flex-shrink: 0;
+  padding-left: 40px;
+  text-align: right;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: {{TEXT}};
+  opacity: 0.45;
+  line-height: 1.6;
+  max-width: 180px;
+  text-align: right;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* ── BODY CONTENT ── */
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.body-left {
+  flex: 1;
+  padding: 44px 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  color: {{ACCENT}};
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.usp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+  flex: 1;
+}
+
+.usp-card {
+  background: {{PRIMARY_08}};
+  border-radius: 8px;
+  padding: 20px 18px;
+  border-left: 3px solid {{ACCENT}};
+}
+
+.usp-card-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: {{ACCENT}};
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.usp-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: {{TEXT}};
+  line-height: 1.3;
+  margin-bottom: 6px;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.usp-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: {{TEXT}};
+  opacity: 0.5;
+  line-height: 1.55;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.elevator-section {
+  margin-top: 32px;
+  padding: 20px 22px;
+  background: {{ACCENT_06}};
+  border-radius: 8px;
+}
+
+.elevator-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: {{TEXT}};
+  opacity: 0.6;
+  line-height: 1.65;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: 20px 56px;
+  border-top: 0.5px solid rgba(0,0,0,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: {{CTA_BG}};
+  color: {{CTA_TEXT_COLOR}};
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 6px;
+  letter-spacing: 0.2px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  color: {{TEXT}};
+  opacity: 0.25;
+  margin-bottom: 3px;
+}
+
+.footer-gen {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  color: {{TEXT}};
+  opacity: 0.15;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-accent-bar"></div>
+  <div class="header-left">
+    <div class="brand-name">{{BRAND_NAME}}</div>
+    <div class="headline">{{HEADLINE}}</div>
+  </div>
+  <div class="header-right">
+    <div class="tagline">{{TAGLINE}}</div>
+  </div>
+</div>
+
+<div class="body">
+  <div class="body-left">
+    <div class="section-label">What Makes {{BRAND_NAME}} Different</div>
+
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-card-number">01</div>
+        <div class="usp-card-title">{{USP_1_TITLE}}</div>
+        <div class="usp-card-desc">{{USP_1_DESC}}</div>
+      </div>
+      <div class="usp-card">
+        <div class="usp-card-number">02</div>
+        <div class="usp-card-title">{{USP_2_TITLE}}</div>
+        <div class="usp-card-desc">{{USP_2_DESC}}</div>
+      </div>
+      <div class="usp-card">
+        <div class="usp-card-number">03</div>
+        <div class="usp-card-title">{{USP_3_TITLE}}</div>
+        <div class="usp-card-desc">{{USP_3_DESC}}</div>
+      </div>
+      <div class="usp-card">
+        <div class="usp-card-number">04</div>
+        <div class="usp-card-title">{{USP_4_TITLE}}</div>
+        <div class="usp-card-desc">{{USP_4_DESC}}</div>
+      </div>
+    </div>
+
+    <div class="elevator-section">
+      <div class="elevator-text">{{ELEVATOR_PITCH}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-cta">{{CTA_TEXT}} →</div>
+  <div class="footer-right">
+    <div class="footer-url">{{BRAND_URL}}</div>
+    <div class="footer-gen">Generated by {{GENERATOR}}</div>
+  </div>
+</div>
+
+</body>
+</html>
